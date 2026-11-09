@@ -36,6 +36,7 @@ export const env = {
   clientOrigins: (process.env.CLIENT_URL || 'http://localhost:5173')
     .split(',')
     .map((origin) => origin.trim())
+    .map((origin) => origin.replace(/\/+$/, ''))
     .filter(Boolean),
   smtpHost: process.env.SMTP_HOST || 'smtp.gmail.com',
   smtpPort: Number(process.env.SMTP_PORT || 587),
@@ -43,7 +44,14 @@ export const env = {
   smtpUser: process.env.SMTP_USER || process.env.EMAIL || '',
   mailFromName: process.env.MAIL_FROM_NAME || 'S.H.I.E.L.D.',
   mailFromEmail: process.env.MAIL_FROM_EMAIL || process.env.SMTP_USER || process.env.EMAIL || '',
-  aimlServiceUrl: process.env.AIML_SERVICE_URL || 'http://localhost:8000',
+  openRouterModel: process.env.OPEN_ROUTER_MODEL || process.env.OPENAI_MODEL || 'gpt-5.5',
+  openRouterMaxOutputTokens: Number(
+    process.env.OPEN_ROUTER_MAX_OUTPUT_TOKENS || process.env.OPENAI_MAX_OUTPUT_TOKENS || 600,
+  ),
+  openRouterTimeout: Number(
+    process.env.OPEN_ROUTER_TIMEOUT || process.env.OPENAI_TIMEOUT || 30000,
+  ),
+  openRouterBaseUrl: process.env.OPEN_ROUTER_BASE_URL || 'https://openrouter.ai/api/v1',
   bootstrapAdminEmail: process.env.BOOTSTRAP_ADMIN_EMAIL?.trim().toLowerCase() || '',
   bootstrapAdminPassword: process.env.BOOTSTRAP_ADMIN_PASSWORD || '',
   bootstrapAdminName: process.env.BOOTSTRAP_ADMIN_NAME || 'Campus Administrator',
