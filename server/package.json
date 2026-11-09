@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "diagnose:openrouter": "node scripts/diagnose-openai.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
